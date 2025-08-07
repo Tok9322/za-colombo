@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Urban Oasis - 本格スリランカレストラン</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;700&family=Noto+Sans+JP:wght@400;500&display=swap');
+
+        :root {
+            --primary-color: #006A4E; /* Deep Green */
+            --secondary-color: #DAA520; /* Turmeric Yellow/Gold */
+            --accent-color: #40E0D0; /* Turquoise */
+            --text-color: #333333;
+            --bg-color: #FDFDFD;
+            --heading-font: 'Noto Serif JP', serif;
+            --body-font: 'Noto Sans JP', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--body-font);
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            line-height: 1.8;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h1, h2, h3 {
+            font-family: var(--heading-font);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+
+        section {
+            padding: 6rem 0;
+        }
+
+        /* Header */
+        .main-header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.9);
+            z-index: 100;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: background-color 0.3s;
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-family: var(--heading-font);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .main-nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            transition: color 0.3s, background-color 0.3s;
+        }
+
+        .main-nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Hero Section */
+        #hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            height: 100vh;
+            background: url('https://images.unsplash.com/photo-1598493653342-42f54d7a5a58?q=80&w=1974&auto=format&fit=crop') no-repeat center center/cover;
+            color: white;
+            padding: 0;
+        }
+        
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            color: white;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            font-weight: 400;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+        }
+
+        /* Concept Section */
+        #concept .container {
+            text-align: center;
+            max-width: 800px;
+        }
+
+        /* Menu Section */
+        #menu {
+            background-color: #f4f4f4;
+        }
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .menu-item {
+            background: white;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+        .menu-item img {
+            width: 100%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+        }
+        .menu-item-content {
+            padding: 1.5rem;
+        }
+        .menu-item-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        .menu-item-content p {
+            font-size: 0.9rem;
+        }
+
+        /* Access Section */
+        .access-content {
+            display: flex;
+            gap: 3rem;
+            margin-top: 4rem;
+            align-items: center;
+        }
+        .access-info, .access-map {
+            flex: 1;
+        }
+        .access-info p {
+            margin-bottom: 1rem;
+        }
+        .access-map iframe {
+            width: 100%;
+            height: 350px;
+            border: 0;
+            border-radius: 8px;
+        }
+
+        /* Footer */
+        .main-footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+        }
+        .footer-socials a {
+            color: white;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            text-decoration: none;
+        }
+        .main-footer p {
+            margin-top: 1rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h2 {
+                font-size: 2rem;
+            }
+            .main-header .container {
+                flex-direction: column;
+            }
+            .main-nav ul {
+                margin-top: 1rem;
+            }
+            #hero {
+                height: 80vh;
+            }
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            section {
+                padding: 4rem 0;
+            }
+            .access-content {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo">Urban Oasis</a>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#concept">CONCEPT</a></li>
+                    <li><a href="#menu">MENU</a></li>
+                    <li><a href="#access">ACCESS</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="hero-content">
+            <h1>五感を呼び覚ます、スパイスの旅へ</h1>
+            <p>Urban Oasisで出会う、本物のスリランカカリー</p>
+        </div>
+    </section>
+
+    <section id="concept">
+        <div class="container">
+            <h2>CONCEPT</h2>
+            <p>
+                「Urban Oasis」は、都会の喧騒を忘れさせる、緑豊かな癒やしの空間です。<br>
+                スリランカから直送される30種類以上のスパイスを巧みに使いこなし、<br>
+                伝統的な家庭料理からモダンなアレンジまで、奥深いスリランカ料理の世界へと皆様を誘います。<br>
+                心と身体が喜ぶ、ヘルシーで刺激的な一皿をお楽しみください。
+            </p>
+        </div>
+    </section>
+
+    <section id="menu">
+        <div class="container">
+            <h2>MENU</h2>
+            <div class="menu-grid">
+                <div class="menu-item">
+                    <img src="images/ayurveda-oneplate.png" alt="アーユルヴェーダ ワンプレートの画像">
+                    <div class="menu-item-content">
+                        <h3>アーユルヴェーダ ワンプレート - Ayurveda Oneplate</h3>
+                        <p>アーユルヴェーダの知恵をベースに、オーガニックスパイスをふんだんに使用。一皿で体を整え、心まで満たしてくれるスリランカの体にうれしいワンプレート。</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="images/Lamprais.png" alt="ランプライスの画像">
+                    <div class="menu-item-content">
+                        <h3>ランプライス - Lamprais</h3>
+                        <p>バナナの葉に包まれた、スリランカの特別なごちそう。 数種類のおかずとスパイスライスを包んで蒸し上げることで、香りと旨みがぎゅっと凝縮されています。</p>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <img src="images/string-hopper-kottu.png" alt="ストリングホッパーコットゥの画像">
+                    <div class="menu-item-content">
+                        <h3>ストリングホッパーコットゥ - String Hopper Kottu</h3>
+                        <p>米粉の蒸し麺「ストリングホッパー」をスパイシーに炒めた、スリランカの定番家庭料理。 モチモチの麺とスパイスの香りがクセになる、やみつき必至の味わいです。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="access">
+        <div class="container">
+            <h2>ACCESS</h2>
+            <div class="access-content">
+                <div class="access-info">
+                    <p><strong>店名:</strong> Urban Oasis (アーバンオアシス)</p>
+                    <p><strong>住所:</strong> 東京都渋谷区神宮前 1-2-3 ABCビル1F</p>
+                    <p><strong>電話番号:</strong> 03-1234-5678</p>
+                    <p><strong>営業時間:</strong><br>
+                        Lunch: 11:30 - 15:00 (L.O. 14:30)<br>
+                        Dinner: 18:00 - 22:00 (L.O. 21:30)
+                    </p>
+                    <p><strong>定休日:</strong> 月曜日</p>
+                </div>
+                <div class="access-map">
+                    <!-- Google Mapの埋め込みコードをここに貼り付けます -->
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.439991773378!2d139.7009883152584!3d35.66623298019788!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c9fa8d35f5d%3A0x338d33c5d593529!2z5Y6f5Y-j56We5a6u!5e0!3m2!1sja!2sjp!4v1662533333333!5m2!1sja!2sjp" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-socials">
+                <!-- Font Awesomeなどを使うとよりリッチになります -->
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+            </div>
+            <p>&copy; 2025 Urban Oasis. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
